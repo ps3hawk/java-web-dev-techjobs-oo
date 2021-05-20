@@ -47,7 +47,13 @@ public class JobsTests {
 
         @Test
         public void testJobsForEquality() {
-                assertFalse(frontEndJobOfYourDreams.equals(serverManager));
+                Job job1 = new Job("Web Developer", new Employer("LaunchCode"),
+                        new Location("St. Louis"), new PositionType("Front-end developer"),
+                        new CoreCompetency("JavaScript"));
+                Job job2 = new Job("Web Developer", new Employer("LaunchCode"),
+                        new Location("St. Louis"), new PositionType("Front-end developer"),
+                        new CoreCompetency("JavaScript"));
+                assertFalse(job1.equals(job2));
         }
 
         @Test
