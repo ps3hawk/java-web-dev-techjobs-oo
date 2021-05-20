@@ -18,7 +18,8 @@ public class Job {
         nextId++;
     }
 
-    public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
+    public Job(String name, Employer employer, Location location, PositionType positionType,
+               CoreCompetency coreCompetency) {
         this();
         this.name = name;
         this.employer = employer;
@@ -27,17 +28,9 @@ public class Job {
         this.coreCompetency = coreCompetency;
     }
 
-    public static int getNextId() {
-        return nextId;
-    }
 
-    public static void setNextId(int nextId) {
-        Job.nextId = nextId;
-    }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     public void setName(String name) {
         this.name = name;
@@ -91,13 +84,40 @@ public class Job {
     public int hashCode() {
         return Objects.hash(id);
     }
-    // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
-    //  other five fields. The second constructor should also call the first in order to initialize
-    //  the 'id' field.
+    @Override
+    public String toString() {
+        String nameValue = this.name;
+        String employerValue = this.getEmployer().toString();
+        String locationValue = this.getLocation().toString();
+        String positionTypeValue = this.getPositionType().toString();
+        String coreCompetencyValue = this.getCoreCompetency().toString();
 
-    // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
-    //  match.
+        if (this.employer.getValue().equals("") && this.name.equals("")
+                && this.location.getValue().equals("") && this.positionType.getValue().equals("")
+                && this.coreCompetency.getValue().equals("")) {
+            return "OOPS! This job does not seem to exist.";
+        }
+        if (this.employer.getValue().equals("")) {
+            employerValue = "Data not available";
+        }
+        if (this.name.equals("")) {
+            nameValue = "Data not available";
+        }
+        if (this.location.getValue().equals("")) {
+            locationValue = "Data not available";
+        }
+        if (this.positionType.getValue().equals("")) {
+            positionTypeValue = "Data not available";
+        }
+        if (this.coreCompetency.getValue().equals("")) {
+            coreCompetencyValue = "Data not available";
+        }
 
-    // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
-    //  and id.
+        return "\nID: " + this.id+ "\nName: " + nameValue + "\nEmployer: "
+                + employerValue + "\nLocation: " + locationValue
+                + "\nPosition Type: " + positionTypeValue
+                + "\nCore Competency: " + coreCompetencyValue + "\n";
+    }
+
+
 }
