@@ -34,14 +34,14 @@ public class JobsTests {
         @Test
         public void testJobConstructorSetsAllFields() {
                 Job job = serverManager;
+                assertTrue(job.getEmployer() instanceof Employer &&
+                        job.getLocation() instanceof Location &&
+                        job.getPositionType() instanceof PositionType &&
+                        job.getCoreCompetency() instanceof CoreCompetency);
                 assertEquals("Product tester", job.getName());
-                assertTrue(job.getEmployer() instanceof Employer);
                 assertEquals("ACME", job.getEmployer().toString());
-                assertTrue(job.getLocation() instanceof Location);
                 assertEquals("Desert", job.getLocation().toString());
-                assertTrue(job.getPositionType() instanceof PositionType);
                 assertEquals("Quality control", job.getPositionType().toString());
-                assertTrue(job.getCoreCompetency() instanceof CoreCompetency);
                 assertEquals("Persistence", job.getCoreCompetency().toString());
         }
 
