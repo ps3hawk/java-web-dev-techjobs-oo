@@ -11,21 +11,24 @@ public class JobsTests {
         public Job frontEndJobOfYourDreams;
         public Job serverManager;
         public Job codeMonkey;
+        public Job nothingInFields;
 
         @Before
         public void testJobsConstructor() {
-            codeMonkey = new Job("Ice cream taster", new Employer(""),
-                    new Location("Home"), new PositionType("UX"), new CoreCompetency("Taste"));
-            serverManager = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
-                    new PositionType("Quality control"), new CoreCompetency("Persistence"));
                 frontEndJobOfYourDreams= new Job("Web Developer", new Employer("LaunchCode"),
                         new Location("St. Louis"), new PositionType("Front-end developer"),
                         new CoreCompetency("JavaScript"));
+                serverManager = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
+                        new PositionType("Quality control"), new CoreCompetency("Persistence"));
+                codeMonkey = new Job("Ice cream taster", new Employer(""),
+                        new Location("Home"), new PositionType("UX"), new CoreCompetency("Taste"));
+                nothingInFields = new Job("", new Employer(""), new Location(""),
+                        new PositionType(""), new CoreCompetency(""));
         }
 
         @Test
         public void testSettingJobId() {
-        assertEquals(codeMonkey.getId() + 1, serverManager.getId());
+        assertEquals(frontEndJobOfYourDreams.getId() + 1, serverManager.getId());
         }
 
         @Test
@@ -48,15 +51,33 @@ public class JobsTests {
         }
 
         @Test
-        public void testToStringForLabelsAndFields() {
+        public void testToStringForBlankLines() {
+                Job job = frontEndJobOfYourDreams;
+                assertEquals('\n', job.toString().charAt(0));
+                assertEquals('\n', job.toString().charAt(job.toString().length() - 1));
+        }
+
+        @Test
+        public void testToStringWithBlankLinesAndLabelsAndInfo() {
                 Job job = frontEndJobOfYourDreams;
                 assertEquals("\nID: " + job.getId()+ "\nName: Web Developer\nEmployer: LaunchCode\n" +
                         "Location: St. Louis\nPosition Type: Front-end developer\nCore Competency: JavaScript\n"
                         , job.toString());
         }
 
+        @Test
+        public void testEmployerForEmptyString() {
+                Job job = codeMonkey;
+                assertEquals("\nID: " + job.getId()+ "\nName: Ice cream taster\nEmployer: Data not " +
+                        "available\nLocation: Home\nPosition Type: UX\nCore Competency: " +
+                        "Taste\n", job.toString());
+        }
 
-
+        @Test
+        public void testForIdIsOnly() {
+                Job job = nothingInFields;
+                assertEquals("OOPS! This job does not seem to exist.", job.toString());
+        }
 
 
 }

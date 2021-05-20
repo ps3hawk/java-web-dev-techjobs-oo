@@ -12,7 +12,7 @@ public abstract class JobField {
     }
 
     public JobField(String value) {
-//        this();
+        this();
         this.value = value;
     }
     @Override
@@ -24,13 +24,8 @@ public abstract class JobField {
     public String toString() {
         return this.value;
     }
-    @Override
-    public boolean equals(Object o){
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        JobField that = (JobField) o;
-        return this.getId() == that.getId();
-    }
+//    @Override
+//    public abstract boolean equals(Object o);
 
     public int getId() {
         return id;
