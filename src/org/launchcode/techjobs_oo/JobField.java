@@ -24,8 +24,6 @@ public abstract class JobField {
     public String toString() {
         return this.value;
     }
-//    @Override
-//    public abstract boolean equals(Object o);
 
     public int getId() {
         return id;
